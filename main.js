@@ -1,4 +1,29 @@
 
+// Theme switching logic
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+// Check for saved theme preference
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'dark') {
+    body.classList.add('dark-mode');
+    themeToggle.textContent = '라이트 모드';
+}
+
+themeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    const isDarkMode = body.classList.contains('dark-mode');
+    
+    if (isDarkMode) {
+        localStorage.setItem('theme', 'dark');
+        themeToggle.textContent = '라이트 모드';
+    } else {
+        localStorage.setItem('theme', 'light');
+        themeToggle.textContent = '다크 모드';
+    }
+});
+
+// Lotto generation logic
 document.getElementById('generate-btn').addEventListener('click', () => {
     const lottoNumbersContainer = document.getElementById('lotto-numbers');
     lottoNumbersContainer.innerHTML = '';
