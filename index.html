@@ -21,6 +21,7 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
+    padding: 20px 0;
 }
 
 .container{
@@ -47,6 +48,11 @@ button{
     border-radius:12px;
     cursor:pointer;
     font-size:18px;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: #eee;
 }
 
 .question{
@@ -66,6 +72,10 @@ button{
     border:1px solid #333;
     padding: 15px;
     border-radius: 8px;
+    font-size: 16px;
+}
+.answer-btn:hover {
+    background: #333;
 }
 
 .result{
@@ -83,20 +93,21 @@ button{
 .result-card h2 {
     margin-bottom: 15px;
     color: #4CAF50;
+    font-size: 24px;
 }
 
 .result-card h3 {
     margin-top: 20px;
     margin-bottom: 10px;
     color: #FFC107;
+    font-size: 18px;
+    border-bottom: 1px solid #444;
+    padding-bottom: 5px;
 }
 
 .result-card p, .result-card ul {
-    line-height: 1.6;
-}
-
-.result-card ul {
-    padding-left: 20px;
+    line-height: 1.7;
+    color: #ddd;
 }
 
 </style>
@@ -171,7 +182,7 @@ const questions = [
         question: "땀을 흘리고 나면 어떤가요?",
         answers: [
             { text: "몸이 가볍고 상쾌하다.", types: ["Mogyang", "Toyang"] },
-            { text: "기운이 빠지고 피곤하다.", types: ["Geumyang", "Sueum", "Mogeum"] }
+            { text: "기운이 빠지고 피곤하다.", types: ["Geumyang", "Sueum", "Mogeum", "Geumeum"] }
         ]
     },
     {
@@ -184,29 +195,29 @@ const questions = [
     {
         question: "성격이 급한 편인가요, 느긋한 편인가요?",
         answers: [
-            { text: "급하고 외향적이며, 사람들과 어울리는 것을 좋아한다.", types: ["Toyang", "Mogyang"] },
-            { text: "느긋하고 내성적이며, 혼자 있는 시간을 즐긴다.", types: ["Geumyang", "Sueum", "Toeum"] }
+            { text: "급하고 외향적이며, 사람들과 어울리는 것을 좋아한다.", types: ["Toyang", "Mogyang", "Suyang"] },
+            { text: "느긋하고 내성적이며, 혼자 있는 시간을 즐긴다.", types: ["Geumyang", "Sueum", "Toeum", "Geumeum"] }
         ]
     },
     {
         question: "육류와 해산물 중 어떤 것을 더 선호하나요?",
         answers: [
             { text: "육류를 더 좋아하고, 먹고 나면 속이 편하다.", types: ["Mogyang", "Mogeum"] },
-            { text: "해산물을 더 좋아하고, 육류는 소화가 잘 안될 때가 있다.", types: ["Geumyang", "Geumeum"] }
+            { text: "해산물을 더 좋아하고, 육류는 소화가 잘 안될 때가 있다.", types: ["Geumyang", "Geumeum", "Sueum"] }
         ]
     },
     {
         question: "추위와 더위 중 어떤 것을 더 타나요?",
         answers: [
             { text: "더위를 많이 타고, 시원한 것을 좋아한다.", types: ["Toyang", "Mogyang"] },
-            { text: "추위를 많이 타고, 따뜻한 것을 좋아한다.", types: ["Sueum", "Toeum", "Geumeum"] }
+            { text: "추위를 많이 타고, 따뜻한 것을 좋아한다.", types: ["Sueum", "Toeum", "Geumeum", "Geumyang"] }
         ]
     },
     {
         question: "평소 소화는 잘 되는 편인가요?",
         answers: [
             { text: "소화력이 강해서 뭐든지 잘 먹는다.", types: ["Toyang", "Suyang"] },
-            { text: "소화기가 약하고, 찬 음식을 먹으면 탈이 나기 쉽다.", types: ["Sueum", "Toeum"] }
+            { text: "소화기가 약하고, 찬 음식을 먹으면 탈이 나기 쉽다.", types: ["Sueum", "Toeum", "Mogeum"] }
         ]
     },
     {
@@ -228,27 +239,148 @@ const questions = [
       {
         question: "물을 자주 마시는 편인가요?",
         answers: [
-            { text: "물을 잘 마시지 않고, 마셔도 시원함을 못 느낀다.", types: ["Mogyang", "Toyang"] },
-            { text: "물을 자주 마시고, 따뜻한 물을 선호한다.", types: ["Sueum", "Toeum"] }
+            { text: "물을 잘 마시지 않는 편이다.", types: ["Sueum", "Toeum"] },
+            { text: "물을 자주 마시는 편이다.", types: ["Toyang", "Mogyang", "Suyang", "Geumyang"] }
         ]
     },
     {
         question: "평소 변은 어떤 상태인가요?",
         answers: [
             { text: "대체로 건강하고 규칙적이다.", types: ["Mogyang", "Suyang"] },
-            { text: "무르고 가늘게 나오는 편이다.", types: ["Mogeum", "Sueum"] },
-            { text: "변비 경향이 있고, 변이 단단하다.", types: ["Toyang", "Geumeum"] }
+            { text: "무르고 가늘게 나오는 편이다.", types: ["Mogeum", "Sueum", "Toeum"] },
+            { text: "변비 경향이 있고, 변이 단단하다.", types: ["Toyang", "Geumeum", "Geumyang"] }
         ]
     },
     {
         question: "상체와 하체 중 어느 쪽이 더 발달했나요?",
         answers: [
-            { text: "상체가 발달하고, 허리가 약한 편이다.", types: ["Geumyang", "Geumeum"] },
-            { text: "하체가 발달하고, 어깨가 좁은 편이다.", types: ["Sueum", "Mogeum"] },
-            { text: "전체적으로 균형이 잡혀 있거나, 복부가 발달했다.", types: ["Mogyang", "Toyang", "Toeum"] }
+            { text: "상체가 발달하고, 허리가 약한 편이다.", types: ["Geumyang", "Geumeum", "Toyang"] },
+            { text: "하체가 발달하고, 어깨가 좁은 편이다.", types: ["Sueum", "Mogeum", "Toeum"] },
+            { text: "전체적으로 균형이 잡혀 있거나, 복부가 발달했다.", types: ["Mogyang", "Suyang"] }
         ]
     },
     {
         question: "어떤 활동을 할 때 더 즐거움을 느끼나요?",
         answers: [
-            { text: "활동적으로 움직이고 땀을 흘리는 운동", types: ["Mogyang",...
+            { text: "활동적으로 움직이고 땀을 흘리는 운동.", types: ["Mogyang", "Toyang"] },
+            { text: "조용히 사색하거나 정적인 활동.", types: ["Geumyang", "Sueum", "Toeum"] },
+            { text: "사람들과 어울리며 대화하는 것.", types: ["Suyang", "Mogeum"] }
+        ]
+    }
+];
+
+const resultData = {
+    Mogyang: {
+        desc: "간(肝)이 강하고 폐(肺)가 약한 체질. 창의적이고 활동적이지만, 독선적일 수 있습니다. 상체가 발달하고 허리가 약한 편이며, 땀을 많이 흘리는 것이 건강에 좋습니다.",
+        goodFood: "소고기, 닭고기, 콩, 두부, 밀가루, 뿌리채소(무, 당근, 연근), 견과류, 우유",
+        badFood: "해산물(특히 조개류), 날배추, 메밀, 포도, 찬 음식, 술",
+        healthTip: "규칙적인 운동으로 땀을 내는 것이 좋습니다. 등산이나 조깅과 같은 유산소 운동이 잘 맞습니다. 화를 내는 것을 경계하고, 온수욕으로 피로를 푸는 것이 도움이 됩니다."
+    },
+    Mogeum: {
+        desc: "담(膽)이 강하고 대장(大腸)이 약한 체질. 조용하고 내성적이지만 감수성이 풍부합니다. 하체가 발달했으며, 배변 활동에 신경을 써야 합니다. 평소 말을 아끼는 편입니다.",
+        goodFood: "돼지고기, 생선, 조개류, 쌀, 메밀, 오이, 가지, 푸른 채소",
+        badFood: "소고기, 닭고기, 밀가루, 땅콩, 설탕, 매운 음식, 유제품, 술",
+        healthTip: "변비나 설사에 주의해야 합니다. 수영과 같이 하체를 단련하는 운동이 좋으며, 스트레스를 받으면 소화가 잘 안될 수 있으니 마음을 편안하게 갖는 것이 중요합니다. 말을 많이 하면 기운이 빠질 수 있습니다."
+    },
+    Toyang: {
+        desc: "췌장(膵臟)이 강하고 신장(腎臟)이 약한 체질. 사교적이고 활동적이며, 소화력이 왕성합니다. 성격이 급하고 외향적이라 사람들과 어울리는 것을 좋아합니다.",
+        goodFood: "돼지고기, 보리, 팥, 오이, 해산물(굴, 새우, 게), 참외, 바나나",
+        badFood: "닭고기, 소고기, 찹쌀, 감자, 꿀, 인삼, 매운 음식, 사과, 귤",
+        healthTip: "소화력이 강하지만, 성급한 성격 탓에 과식하기 쉽습니다. 비뇨생식기 계통이 약할 수 있으므로 찬 곳을 피하고, 하체를 따뜻하게 유지하는 것이 좋습니다. 시원한 음식을 먹는 것이 더부룩함을 해소하는데 도움이 됩니다."
+    },
+    Toeum: {
+        desc: "위(胃)가 강하고 방광(膀胱)이 약한 체질. 차분하고 신중하며, 내성적인 성향을 가집니다. 손발이 따뜻하고 소화는 잘 되지만, 비뇨기 계통이 약할 수 있습니다. 한 번 믿으면 끝까지 믿는 경향이 있습니다.",
+        goodFood: "소고기, 닭고기, 찹쌀, 감자, 미역, 다시마, 인삼, 꿀, 사과, 귤",
+        badFood: "돼지고기, 보리, 팥, 오이, 배, 찬 음식, 해산물",
+        healthTip: "몸을 따뜻하게 유지하고, 특히 아랫배를 따뜻하게 하는 것이 중요합니다. 꾸준한 운동이 좋지만, 땀을 너무 많이 흘리는 것은 피해야 합니다. 불안감을 느끼기 쉬우므로 마음의 안정을 찾는 것이 중요합니다."
+    },
+    Geumyang: {
+        desc: "폐(肺)가 강하고 간(肝)이 약한 체질. 독창적이고 이상주의적인 성향이 강하며, 완벽을 추구합니다. 육식을 하면 알레르기나 아토피가 생기기 쉽습니다.",
+        goodFood: "해산물(생선, 조개), 쌀, 메밀, 푸른 잎채소(배추, 상추), 포도, 복숭아",
+        badFood: "모든 육류, 밀가루, 유제품, 커피, 인공조미료, 뿌리채소, 마늘, 버섯, 설탕",
+        healthTip: "육식을 피하고 채식 위주의 식단을 유지하는 것이 건강의 핵심입니다. 화를 잘 내지 않지만, 한번 나면 오래갈 수 있습니다. 명상이나 요가로 마음을 다스리는 것이 좋습니다. 하체를 단련하는 운동을 꾸준히 하는 것이 좋습니다."
+    },
+    Geumeum: {
+        desc: "대장(大腸)이 강하고 담(膽)이 약한 체질. 끈기와 인내심이 강하고, 직관력이 뛰어납니다. 과묵하고 냉정해 보일 수 있지만, 속은 깊습니다. 근육이 잘 발달하는 편입니다.",
+        goodFood: "해산물, 메밀, 쌀, 대부분의 채소, 포도, 복숭아, 수박",
+        badFood: "모든 육류, 마늘, 생강, 후추, 맵고 자극적인 음식, 유제품, 커피",
+        healthTip: "육식과 약물 복용에 주의해야 합니다. 땀을 많이 흘리는 과격한 운동보다는 수영이나 맨손체조가 좋습니다. 변비에 걸리기 쉬우므로 섬유질이 풍부한 음식을 섭취하세요. 간 기능이 약해 술에 쉽게 취할 수 있습니다."
+    },
+    Suyang: {
+        desc: "신장(腎臟)이 강하고 췌장(膵臟)이 약한 체질. 꼼꼼하고 완벽주의적인 성향이 있으며, 생각이 많습니다. 소화기가 약해서 찬 음식을 먹으면 탈이 나기 쉽습니다.",
+        goodFood: "보리, 팥, 돼지고기, 오이, 참외, 해산물(특히 새우, 게), 딸기",
+        badFood: "찹쌀, 닭고기, 소고기, 꿀, 인삼, 매운 음식, 사과, 귤, 생강",
+        healthTip: "소화기능이 약하므로 항상 음식을 천천히 씹어 먹고, 따뜻하게 먹는 습관을 들이는 것이 중요합니다. 변비가 생기기 쉬우니 주의해야 합니다. 여름에도 따뜻한 물을 마시는 것이 좋습니다. 급한 마음을 버리고 여유를 갖는 연습이 필요합니다."
+    },
+    Sueum: {
+        desc: "방광(膀胱)이 강하고 위(胃)가 약한 체질. 조용하고 내성적이며, 섬세하고 꼼꼼합니다. 소화기가 매우 약하고 몸이 차가우므로 항상 몸을 따뜻하게 해야 합니다.",
+        goodFood: "닭고기, 찹쌀, 감자, 생강, 파, 미역, 다시마, 꿀, 사과, 귤, 토마토",
+        badFood: "돼지고기, 보리, 팥, 오이, 참외, 맥주, 얼음, 냉면, 생야채",
+        healthTip: "소화불량이 만성적으로 나타날 수 있습니다. 어떤 음식이든 따뜻하게 먹고, 소식하는 것이 건강의 기본입니다. 땀을 많이 흘리는 것을 피하고, 여름에도 찬 음식과 냉방을 주의해야 합니다. 긍정적인 생각을 하고 햇볕을 쬐는 것이 좋습니다."
+    }
+};
+
+let current = 0;
+
+function startTest() {
+    document.getElementById("start").style.display = "none";
+    document.getElementById("question").style.display = "block";
+    showQuestion();
+}
+
+function showQuestion() {
+    if (current >= questions.length) {
+        showResult();
+        return;
+    }
+    const q = questions[current];
+    document.getElementById("questionText").innerText = q.question;
+    const answersDiv = document.getElementById("answers");
+    answersDiv.innerHTML = "";
+    q.answers.forEach(answer => {
+        const btn = document.createElement("button");
+        btn.className = "answer-btn";
+        btn.innerText = answer.text;
+        btn.onclick = () => selectAnswer(answer.types);
+        answersDiv.appendChild(btn);
+    });
+}
+
+function selectAnswer(types) {
+    types.forEach(type => {
+        if (constitutions[type]) {
+            constitutions[type].score++;
+        }
+    });
+
+    current++;
+    showQuestion();
+}
+
+function showResult() {
+    document.getElementById("question").style.display = "none";
+    document.getElementById("result").style.display = "block";
+
+    let resultType = "";
+    let maxScore = -1;
+
+    // Determine the result
+    const sortedConstitutions = Object.keys(constitutions).sort((a, b) => constitutions[b].score - constitutions[a].score);
+    resultType = sortedConstitutions[0];
+    
+    // Handle ties - for simplicity, we just pick the first one in case of a tie.
+    // A more complex logic could be added here if needed.
+
+    const result = resultData[resultType];
+    document.getElementById("resultTitle").innerText = constitutions[resultType].title;
+    document.getElementById("resultDesc").innerText = result.desc;
+    document.getElementById("goodFood").innerText = result.goodFood;
+    document.getElementById("badFood").innerText = result.badFood;
+    document.getElementById("healthTip").innerText = result.healthTip;
+}
+
+
+</script>
+
+</body>
+</html>
