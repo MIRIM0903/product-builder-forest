@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>한의학 MBTI - 8체질 테스트</title>
+<meta name="description" content="8체질 테스트를 통해 자신의 체질을 알아보고, 체질에 맞는 건강 관리법과 음식을 찾아보세요. 한의학 기반의 MBTI, 8체질 테스트를 지금 바로 시작해 보세요.">
+<meta name="keywords" content="8체질, 8체질 테스트, 사상체질, 한의학 MBTI, 체질 자가진단, 체질별 음식, 건강 관리, 이제마, 권도원">
+<title>한의학 MBTI - 내 체질 찾기 | 8체질 테스트</title>
 
 <style>
 
@@ -11,48 +13,78 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 body{
-    background:#111;
-    color:white;
+    background:#f7f9fc;
+    color:#333;
     min-height:100vh;
     display:flex;
-    justify-content:center;
+    flex-direction:column;
     align-items:center;
     padding: 20px 0;
+}
+
+header {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+}
+
+header h1 {
+    font-size: 28px;
+    color: #2c3e50;
 }
 
 .container{
     width:90%;
     max-width:600px;
     text-align:center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 h1{
-    margin-bottom:20px;
-    font-size:32px;
+    margin-bottom:10px;
+    font-size:36px;
+    color: #34495e;
+}
+
+.intro-text {
+    margin: 30px 0;
+    line-height: 1.8;
+    color: #555;
+}
+
+.intro-text h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #3498db;
 }
 
 .subtitle{
-    color:#aaa;
+    color:#7f8c8d;
     margin-bottom:40px;
+    font-size: 18px;
 }
 
 button{
-    background:white;
-    color:black;
+    background: #3498db;
+    color:white;
     border:none;
     padding:15px 30px;
     border-radius:12px;
     cursor:pointer;
     font-size:18px;
-    transition: background 0.2s;
+    transition: background 0.3s;
 }
 
 button:hover {
-    background: #eee;
+    background: #2980b9;
 }
 
 .question{
@@ -67,15 +99,17 @@ button:hover {
     display:block;
     width:100%;
     margin:10px 0;
-    background:#222;
-    color:white;
-    border:1px solid #333;
+    background:#fff;
+    color:#333;
+    border:1px solid #ddd;
     padding: 15px;
     border-radius: 8px;
     font-size: 16px;
+    transition: background-color 0.2s, border-color 0.2s;
 }
 .answer-btn:hover {
-    background: #333;
+    background: #f0f0f0;
+    border-color: #ccc;
 }
 
 .result{
@@ -84,85 +118,137 @@ button:hover {
 }
 
 .result-card{
-    background:#222;
-    padding:25px;
+    background:#fff;
+    padding:30px;
     border-radius:20px;
     margin-top:20px;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 
 .result-card h2 {
     margin-bottom: 15px;
-    color: #4CAF50;
-    font-size: 24px;
+    color: #e74c3c;
+    font-size: 28px;
 }
 
 .result-card h3 {
-    margin-top: 20px;
+    margin-top: 25px;
     margin-bottom: 10px;
-    color: #FFC107;
-    font-size: 18px;
-    border-bottom: 1px solid #444;
-    padding-bottom: 5px;
+    color: #2980b9;
+    font-size: 20px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 8px;
 }
 
 .result-card p, .result-card ul {
-    line-height: 1.7;
-    color: #ddd;
+    line-height: 1.8;
+    color: #555;
+}
+
+#disqus_container {
+    margin-top: 50px;
+}
+
+footer {
+    width: 100%;
+    text-align: center;
+    padding: 25px 0;
+    margin-top: 40px;
+    border-top: 1px solid #eee;
+    font-size: 14px;
+    color: #777;
+}
+
+footer a {
+    color: #555;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer a:hover {
+    text-decoration: underline;
 }
 
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
 
-<div class="container">
+<header>
+    <h1><a href="index.html" style="text-decoration: none; color: inherit;">🔥 한의학 MBTI - 8체질 테스트</a></h1>
+</header>
+
+<main class="container">
 
 <div id="start">
 
-<h1>🔥 한의학 MBTI</h1>
+    <div class="intro-text">
+        <h2>8체질 의학이란?</h2>
+        <p>8체질 의학은 사람의 체질을 목양, 목음, 토양, 토음, 금양, 금음, 수양, 수음의 8가지로 나누는 한의학 이론입니다. 각 체질은 타고난 장기의 강약 배열이 다르며, 이에 따라 성격, 신체적 특징, 그리고 건강 상태까지 영향을 받는다고 봅니다. 자신의 체질을 알면 어떤 음식이 몸에 이롭고 해로운지, 어떤 생활 습관이 건강에 도움이 되는지를 알 수 있어 더욱 건강한 삶을 살아갈 수 있습니다.</p>
+    </div>
 
-<p class="subtitle">
-12개의 질문으로 알아보는 나의 진짜 8체질
-</p>
+    <h1>나의 진짜 체질 찾기</h1>
 
-<button onclick="startTest()">
-테스트 시작하기
-</button>
+    <p class="subtitle">
+    12개의 간단한 질문으로 알아보는 나의 진짜 8체질
+    </p>
+
+    <button onclick="startTest()">
+    테스트 시작하기
+    </button>
 
 </div>
 
 <div id="question" class="question">
 
-<h2 id="questionText"></h2>
+    <h2 id="questionText"></h2>
 
-<div class="answers" id="answers"></div>
+    <div class="answers" id="answers"></div>
 
 </div>
 
 <div id="result" class="result">
 
-<h1>당신의 체질은...</h1>
+    <h1>당신의 체질은...</h1>
 
-<div class="result-card">
+    <div class="result-card">
 
-<h2 id="resultTitle"></h2>
+        <h2 id="resultTitle"></h2>
 
-<p id="resultDesc"></p>
+        <p id="resultDesc"></p>
 
-<h3>✅ 당신에게 좋은 음식</h3>
-<p id="goodFood"></p>
+        <h3>✅ 당신에게 좋은 음식</h3>
+        <p id="goodFood"></p>
 
-<h3>❌ 당신에게 해로운 음식</h3>
-<p id="badFood"></p>
+        <h3>❌ 당신에게 해로운 음식</h3>
+        <p id="badFood"></p>
 
-<h3>💪 건강 관리법</h3>
-<p id="healthTip"></p>
+        <h3>💪 건강 관리법</h3>
+        <p id="healthTip"></p>
+
+    </div>
+    
+    <div id="disqus_container">
+        <div id="disqus_thread"></div>
+    </div>
 
 </div>
 
-</div>
+</main>
 
-</div>
+<footer>
+    <p>&copy; 2024 8체질 테스트. All Rights Reserved.</p>
+    <nav>
+        <a href="about.html">소개</a> |
+        <a href="privacy.html">개인정보처리방침</a> |
+        <a href="contact.html">문의하기</a>
+    </nav>
+</footer>
 
 <script>
 
@@ -364,23 +450,27 @@ function showResult() {
     let resultType = "";
     let maxScore = -1;
 
-    // Determine the result
     const sortedConstitutions = Object.keys(constitutions).sort((a, b) => constitutions[b].score - constitutions[a].score);
     resultType = sortedConstitutions[0];
     
-    // Handle ties - for simplicity, we just pick the first one in case of a tie.
-    // A more complex logic could be added here if needed.
-
     const result = resultData[resultType];
     document.getElementById("resultTitle").innerText = constitutions[resultType].title;
     document.getElementById("resultDesc").innerText = result.desc;
     document.getElementById("goodFood").innerText = result.goodFood;
     document.getElementById("badFood").innerText = result.badFood;
     document.getElementById("healthTip").innerText = result.healthTip;
+
+    // Load Disqus
+    (function() { 
+    var d = document, s = d.createElement('script');
+    s.src = 'https://product-builder-forest-disqus-com.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
 }
 
-
 </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
 </body>
 </html>
