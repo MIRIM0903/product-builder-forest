@@ -1,261 +1,66 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="8체질 테스트를 통해 자신의 체질을 알아보고, 체질에 맞는 건강 관리법과 음식을 찾아보세요. 한의학 기반의 MBTI, 8체질 테스트를 지금 바로 시작해 보세요.">
-<meta name="keywords" content="8체질, 8체질 테스트, 사상체질, 한의학 MBTI, 체질 자가진단, 체질별 음식, 건강 관리, 이제마, 권도원">
-<title>한의학 MBTI - 내 체질 찾기 | 8체질 테스트</title>
-<meta name="google-adsense-account" content="ca-pub-6102886422730723">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6102886422730723" crossorigin="anonymous"></script>
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family: 'Noto Sans KR', sans-serif;
-}
-
-body{
-    background:#f7f9fc;
-    color:#333;
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    padding: 20px 0;
-}
-
-header {
-    width: 100%;
-    text-align: center;
-    padding: 20px 0;
-    border-bottom: 1px solid #eee;
-}
-
-header h1 {
-    font-size: 28px;
-    color: #2c3e50;
-}
-
-.container{
-    width:90%;
-    max-width:600px;
-    text-align:center;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-h1{
-    margin-bottom:10px;
-    font-size:36px;
-    color: #34495e;
-}
-
-.intro-text {
-    margin: 30px 0;
-    line-height: 1.8;
-    color: #555;
-}
-
-.intro-text h2 {
-    font-size: 22px;
-    margin-bottom: 15px;
-    color: #3498db;
-}
-
-.subtitle{
-    color:#7f8c8d;
-    margin-bottom:40px;
-    font-size: 18px;
-}
-
-button{
-    background: #3498db;
-    color:white;
-    border:none;
-    padding:15px 30px;
-    border-radius:12px;
-    cursor:pointer;
-    font-size:18px;
-    transition: background 0.3s;
-}
-
-button:hover {
-    background: #2980b9;
-}
-
-.question{
-    display:none;
-}
-
-.answers{
-    margin-top:20px;
-}
-
-.answer-btn{
-    display:block;
-    width:100%;
-    margin:10px 0;
-    background:#fff;
-    color:#333;
-    border:1px solid #ddd;
-    padding: 15px;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: background-color 0.2s, border-color 0.2s;
-}
-.answer-btn:hover {
-    background: #f0f0f0;
-    border-color: #ccc;
-}
-
-.result{
-    display:none;
-    text-align:left;
-}
-
-.result-card{
-    background:#fff;
-    padding:30px;
-    border-radius:20px;
-    margin-top:20px;
-    border: 1px solid #eee;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-}
-
-.result-card h2 {
-    margin-bottom: 15px;
-    color: #e74c3c;
-    font-size: 28px;
-}
-
-.result-card h3 {
-    margin-top: 25px;
-    margin-bottom: 10px;
-    color: #2980b9;
-    font-size: 20px;
-    border-bottom: 2px solid #f0f0f0;
-    padding-bottom: 8px;
-}
-
-.result-card p, .result-card ul {
-    line-height: 1.8;
-    color: #555;
-}
-
-#disqus_thread {
-    margin-top: 50px;
-}
-
-footer {
-    width: 100%;
-    text-align: center;
-    padding: 25px 0;
-    margin-top: 40px;
-    border-top: 1px solid #eee;
-    font-size: 14px;
-    color: #777;
-}
-
-footer a {
-    color: #555;
-    text-decoration: none;
-    margin: 0 10px;
-}
-
-footer a:hover {
-    text-decoration: underline;
-}
-
-</style>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한의학 MBTI - 내 체질 찾기 | 8체질 테스트</title>
+    <meta name="description" content="8체질 테스트를 통해 자신의 체질을 알아보고, 체질에 맞는 건강 관리법과 음식을 찾아보세요. 한의학 기반의 MBTI, 8체질 테스트를 지금 바로 시작해 보세요.">
+    <meta name="keywords" content="8체질, 8체질 테스트, 사상체질, 한의학 MBTI, 체질 자가진단, 체질별 음식, 건강 관리, 이제마, 권도원">
+    <meta name="google-adsense-account" content="ca-pub-6102886422730723">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6102886422730723" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
 <header>
-    <h1><a href="index.html" style="text-decoration: none; color: inherit;">🔥 한의학 MBTI - 8체질 테스트</a></h1>
+    <h1><a href="index.html">🔥 한의학 MBTI - 8체질 테스트</a></h1>
+    <nav>
+        <a href="about.html">소개</a>
+        <a href="privacy.html">개인정보처리방침</a>
+        <a href="contact.html">문의하기</a>
+    </nav>
 </header>
 
 <main class="container">
 
-<div id="start">
+    <div id="start">
+        <div class="card intro-text">
+            <h1>나의 진짜 체질 찾기</h1>
+            <p class="subtitle">12개의 간단한 질문으로 알아보는 나의 진짜 8체질</p>
+            
+            <h2>8체질 의학이란?</h2>
+            <p>8체질 의학은 사람의 체질을 목양, 목음, 토양, 토음, 금양, 금음, 수양, 수음의 8가지로 나누는 한의학 이론입니다. 각 체질은 타고난 장기의 강약 배열이 다르며, 이에 따라 성격, 신체적 특징, 그리고 건강 상태까지 영향을 받는다고 봅니다. 자신의 체질을 알면 어떤 음식이 몸에 이롭고 해로운지, 어떤 생활 습관이 건강에 도움이 되는지를 알 수 있어 더욱 건강한 삶을 살아갈 수 있습니다.</p>
+            
+            <div class="disclaimer">
+                <strong>주의사항:</strong> 본 테스트는 재미와 참고를 위한 것이며, 의학적 진단을 대체할 수 없습니다. 정확한 체질 진단은 반드시 전문 한의사와 상담하시기 바랍니다.
+            </div>
 
-    <div class="intro-text">
-        <h2>8체질 의학이란?</h2>
-        <p>8체질 의학은 사람의 체질을 목양, 목음, 토양, 토음, 금양, 금음, 수양, 수음의 8가지로 나누는 한의학 이론입니다. 각 체질은 타고난 장기의 강약 배열이 다르며, 이에 따라 성격, 신체적 특징, 그리고 건강 상태까지 영향을 받는다고 봅니다. 자신의 체질을 알면 어떤 음식이 몸에 이롭고 해로운지, 어떤 생활 습관이 건강에 도움이 되는지를 알 수 있어 더욱 건강한 삶을 살아갈 수 있습니다.</p>
+            <button class="start-btn" onclick="startTest()">테스트 시작하기</button>
+        </div>
     </div>
 
-    <h1>나의 진짜 체질 찾기</h1>
-
-    <p class="subtitle">
-    12개의 간단한 질문으로 알아보는 나의 진짜 8체질
-    </p>
-
-    <button onclick="startTest()">
-    테스트 시작하기
-    </button>
-
-</div>
-
-<div id="question" class="question">
-
-    <h2 id="questionText"></h2>
-
-    <div class="answers" id="answers"></div>
-
-</div>
-
-<div id="result" class="result">
-
-    <h1>당신의 체질은...</h1>
-
-    <div class="result-card">
-
-        <h2 id="resultTitle"></h2>
-
-        <p id="resultDesc"></p>
-
-        <h3>✅ 당신에게 좋은 음식</h3>
-        <p id="goodFood"></p>
-
-        <h3>❌ 당신에게 해로운 음식</h3>
-        <p id="badFood"></p>
-
-        <h3>💪 건강 관리법</h3>
-        <p id="healthTip"></p>
-
+    <div id="question" class="question card">
+        <h2 id="questionText"></h2>
+        <div class="answers" id="answers"></div>
     </div>
-    
-    <div id="disqus_thread"></div>
-    <script>
-        /**
-        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-        /*
-        var disqus_config = function () {
-        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-        };
-        */
-        (function() { // DON'T EDIT BELOW THIS LINE
-        var d = document, s = d.createElement('script');
-        s.src = 'https://product-builder-forest-disqus-com.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
-</div>
+    <div id="result" class="result">
+        <h1>당신의 체질은...</h1>
+        <div class="result-card card">
+            <h2 id="resultTitle"></h2>
+            <p id="resultDesc"></p>
+            <h3>✅ 당신에게 좋은 음식</h3>
+            <p id="goodFood"></p>
+            <h3>❌ 당신에게 해로운 음식</h3>
+            <p id="badFood"></p>
+            <h3>💪 건강 관리법</h3>
+            <p id="healthTip"></p>
+        </div>
+        <div id="disqus_thread" class="card"></div>
+    </div>
 
 </main>
 
@@ -269,8 +74,8 @@ footer a:hover {
 </footer>
 
 <script>
-
-const constitutions = {
+    // 기존 script 내용은 여기에 그대로 유지됩니다.
+    const constitutions = {
     Mogyang: { score: 0, title: "목양체질 (木陽體質)" },
     Mogeum: { score: 0, title: "목음체질 (木陰體質)" },
     Toyang: { score: 0, title: "토양체질 (土陽體質)" },
@@ -479,8 +284,16 @@ function showResult() {
     document.getElementById("healthTip").innerText = result.healthTip;
 
 }
-
 </script>
+<script>
+    (function() { // Disqus
+    var d = document, s = d.createElement('script');
+    s.src = 'https://product-builder-forest-disqus-com.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
 </body>
 </html>
