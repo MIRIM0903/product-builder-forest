@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>한의학 MBTI</title>
+<title>한의학 MBTI - 8체질 테스트</title>
 
 <style>
 
@@ -25,7 +25,7 @@ body{
 
 .container{
     width:90%;
-    max-width:500px;
+    max-width:600px;
     text-align:center;
 }
 
@@ -64,17 +64,39 @@ button{
     background:#222;
     color:white;
     border:1px solid #333;
+    padding: 15px;
+    border-radius: 8px;
 }
 
 .result{
     display:none;
+    text-align:left;
 }
 
 .result-card{
     background:#222;
-    padding:20px;
+    padding:25px;
     border-radius:20px;
     margin-top:20px;
+}
+
+.result-card h2 {
+    margin-bottom: 15px;
+    color: #4CAF50;
+}
+
+.result-card h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #FFC107;
+}
+
+.result-card p, .result-card ul {
+    line-height: 1.6;
+}
+
+.result-card ul {
+    padding-left: 20px;
 }
 
 </style>
@@ -89,7 +111,7 @@ button{
 <h1>🔥 한의학 MBTI</h1>
 
 <p class="subtitle">
-3분 만에 알아보는 나의 8체질
+12개의 질문으로 알아보는 나의 진짜 8체질
 </p>
 
 <button onclick="startTest()">
@@ -108,13 +130,22 @@ button{
 
 <div id="result" class="result">
 
-<h1>당신의 체질은</h1>
+<h1>당신의 체질은...</h1>
 
 <div class="result-card">
 
 <h2 id="resultTitle"></h2>
 
 <p id="resultDesc"></p>
+
+<h3>✅ 당신에게 좋은 음식</h3>
+<p id="goodFood"></p>
+
+<h3>❌ 당신에게 해로운 음식</h3>
+<p id="badFood"></p>
+
+<h3>💪 건강 관리법</h3>
+<p id="healthTip"></p>
 
 </div>
 
@@ -124,133 +155,100 @@ button{
 
 <script>
 
+const constitutions = {
+    Mogyang: { score: 0, title: "목양체질 (木陽體質)" },
+    Mogeum: { score: 0, title: "목음체질 (木陰體質)" },
+    Toyang: { score: 0, title: "토양체질 (土陽體質)" },
+    Toeum: { score: 0, title: "토음체질 (土陰體質)" },
+    Geumyang: { score: 0, title: "금양체질 (金陽體質)" },
+    Geumeum: { score: 0, title: "금음체질 (金陰體質)" },
+    Suyang: { score: 0, title: "수양체질 (水陽體質)" },
+    Sueum: { score: 0, title: "수음체질 (水陰體質)" },
+};
+
 const questions = [
-
-{
-question:"평소 손발은?",
-answers:[
-"항상 따뜻하다",
-"보통이다",
-"차갑다"
-]
-},
-
-{
-question:"스트레스를 받으면?",
-answers:[
-"화를 낸다",
-"소화가 안된다",
-"잠이 많아진다"
-]
-},
-
-{
-question:"먹고 나면 자주 느끼는 것은?",
-answers:[
-"속이 편하다",
-"속이 더부룩하다",
-"졸리다"
-]
-}
-
-];
-
-let current = 0;
-let score = 0;
-
-function startTest(){
-
-document.getElementById("start").style.display="none";
-document.getElementById("question").style.display="block";
-
-showQuestion();
-
-}
-
-function showQuestion(){
-
-const q = questions[current];
-
-document.getElementById("questionText").innerText=q.question;
-
-const answersDiv = document.getElementById("answers");
-
-answersDiv.innerHTML="";
-
-q.answers.forEach((answer,index)=>{
-
-const btn=document.createElement("button");
-
-btn.className="answer-btn";
-
-btn.innerText=answer;
-
-btn.onclick=()=>selectAnswer(index);
-
-answersDiv.appendChild(btn);
-
-});
-
-}
-
-function selectAnswer(index){
-
-score += index;
-
-current++;
-
-if(current < questions.length){
-
-showQuestion();
-
-}else{
-
-showResult();
-
-}
-
-}
-
-function showResult(){
-
-document.getElementById("question").style.display="none";
-
-document.getElementById("result").style.display="block";
-
-let type="";
-let desc="";
-
-if(score <= 2){
-
-type="금양체질";
-
-desc="추진력과 에너지가 강한 체질입니다.";
-
-}
-
-else if(score <= 4){
-
-type="수음체질";
-
-desc="섬세하고 차분한 성향의 체질입니다.";
-
-}
-
-else{
-
-type="목음체질";
-
-desc="신중하고 안정적인 성향의 체질입니다.";
-
-}
-
-document.getElementById("resultTitle").innerText=type;
-
-document.getElementById("resultDesc").innerText=desc;
-
-}
-
-</script>
-
-</body>
-</html>
+    {
+        question: "땀을 흘리고 나면 어떤가요?",
+        answers: [
+            { text: "몸이 가볍고 상쾌하다.", types: ["Mogyang", "Toyang"] },
+            { text: "기운이 빠지고 피곤하다.", types: ["Geumyang", "Sueum", "Mogeum"] }
+        ]
+    },
+    {
+        question: "평소 식사 습관은 어떤가요?",
+        answers: [
+            { text: "급하게 먹는 편이고, 식사량이 많다.", types: ["Mogyang", "Toyang"] },
+            { text: "천천히 먹는 편이고, 양이 적거나 보통이다.", types: ["Geumyang", "Sueum", "Mogeum", "Toeum"] }
+        ]
+    },
+    {
+        question: "성격이 급한 편인가요, 느긋한 편인가요?",
+        answers: [
+            { text: "급하고 외향적이며, 사람들과 어울리는 것을 좋아한다.", types: ["Toyang", "Mogyang"] },
+            { text: "느긋하고 내성적이며, 혼자 있는 시간을 즐긴다.", types: ["Geumyang", "Sueum", "Toeum"] }
+        ]
+    },
+    {
+        question: "육류와 해산물 중 어떤 것을 더 선호하나요?",
+        answers: [
+            { text: "육류를 더 좋아하고, 먹고 나면 속이 편하다.", types: ["Mogyang", "Mogeum"] },
+            { text: "해산물을 더 좋아하고, 육류는 소화가 잘 안될 때가 있다.", types: ["Geumyang", "Geumeum"] }
+        ]
+    },
+    {
+        question: "추위와 더위 중 어떤 것을 더 타나요?",
+        answers: [
+            { text: "더위를 많이 타고, 시원한 것을 좋아한다.", types: ["Toyang", "Mogyang"] },
+            { text: "추위를 많이 타고, 따뜻한 것을 좋아한다.", types: ["Sueum", "Toeum", "Geumeum"] }
+        ]
+    },
+    {
+        question: "평소 소화는 잘 되는 편인가요?",
+        answers: [
+            { text: "소화력이 강해서 뭐든지 잘 먹는다.", types: ["Toyang", "Suyang"] },
+            { text: "소화기가 약하고, 찬 음식을 먹으면 탈이 나기 쉽다.", types: ["Sueum", "Toeum"] }
+        ]
+    },
+    {
+        question: "스트레스를 받으면 주로 어떤 반응을 보이나요?",
+        answers: [
+            { text: "화가 나거나 폭식하는 경향이 있다.", types: ["Mogyang", "Toyang"] },
+            { text: "속이 쓰리거나 소화가 안된다.", types: ["Mogeum", "Sueum"] },
+            { text: "불안하고 가슴이 두근거린다.", types: ["Geumyang", "Geumeum"] }
+        ]
+    },
+    {
+        question: "피부 타입은 어떤가요?",
+        answers: [
+            { text: "건강하고 탄력있는 편이다.", types: ["Mogyang", "Suyang"] },
+            { text: "건조하고 민감하며, 알레르기가 생기기 쉽다.", types: ["Geumyang", "Geumeum"] },
+            { text: "부드럽지만 땀이 많고 습한 편이다.", types: ["Sueum", "Toeum"] }
+        ]
+    },
+      {
+        question: "물을 자주 마시는 편인가요?",
+        answers: [
+            { text: "물을 잘 마시지 않고, 마셔도 시원함을 못 느낀다.", types: ["Mogyang", "Toyang"] },
+            { text: "물을 자주 마시고, 따뜻한 물을 선호한다.", types: ["Sueum", "Toeum"] }
+        ]
+    },
+    {
+        question: "평소 변은 어떤 상태인가요?",
+        answers: [
+            { text: "대체로 건강하고 규칙적이다.", types: ["Mogyang", "Suyang"] },
+            { text: "무르고 가늘게 나오는 편이다.", types: ["Mogeum", "Sueum"] },
+            { text: "변비 경향이 있고, 변이 단단하다.", types: ["Toyang", "Geumeum"] }
+        ]
+    },
+    {
+        question: "상체와 하체 중 어느 쪽이 더 발달했나요?",
+        answers: [
+            { text: "상체가 발달하고, 허리가 약한 편이다.", types: ["Geumyang", "Geumeum"] },
+            { text: "하체가 발달하고, 어깨가 좁은 편이다.", types: ["Sueum", "Mogeum"] },
+            { text: "전체적으로 균형이 잡혀 있거나, 복부가 발달했다.", types: ["Mogyang", "Toyang", "Toeum"] }
+        ]
+    },
+    {
+        question: "어떤 활동을 할 때 더 즐거움을 느끼나요?",
+        answers: [
+            { text: "활동적으로 움직이고 땀을 흘리는 운동", types: ["Mogyang",...
