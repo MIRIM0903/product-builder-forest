@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문의하기 | 팔체질연구소</title>
+    <meta name="description" content="팔체질연구소에 질문, 제안 또는 사업 제휴 등 문의사항이 있으시면 언제든지 연락주세요. 대표 이메일: das1909727@gmail.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a2e; --ink-light: #3d3d5c; --jade: #2d6a4f; --jade-mid: #40916c; --jade-light: #74c69d; --jade-pale: #d8f3dc; --gold: #b7950b; --gold-light: #f4d03f; --gold-pale: #fef9e7; --cream: #faf7f2; --paper: #ffffff; --border: #e8e0d5; --shadow: rgba(26,26,46,0.08); --shadow-md: rgba(26,26,46,0.14); --radius: 16px; --radius-sm: 10px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Noto Sans KR', sans-serif; background: var(--cream); color: var(--ink); line-height: 1.8; }
+        nav { background: var(--paper); border-bottom: 1px solid var(--border); padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 60px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px var(--shadow); }
+        .nav-logo { font-family: 'Noto Serif KR', serif; font-size: 18px; font-weight: 700; color: var(--jade); letter-spacing: -0.5px; text-decoration: none; }
+        .nav-logo span { color: var(--gold); }
+        nav a { font-size: 13px; color: var(--ink-light); text-decoration: none; margin-left: 20px; transition: color .2s; }
+        nav a:hover { color: var(--jade); }
+        .container { max-width: 800px; margin: 0 auto; padding: 48px 20px; text-align: center; }
+        .page-title { font-family: 'Noto Serif KR', serif; font-size: clamp(28px, 5vw, 42px); color: var(--jade); margin-bottom: 16px; }
+        .page-subtitle { font-size: 17px; color: var(--ink-light); max-width: 500px; margin: 0 auto 48px; }
+        .content-box { background: var(--paper); border: 1px solid var(--border); border-radius: var(--radius); padding: 40px; }
+        .content-box h2 { font-family: 'Noto Serif KR', serif; font-size: 22px; color: var(--jade); margin-bottom: 12px; }
+        .content-box p { font-size: 15px; color: var(--ink-light); margin-bottom: 24px; }
+        .contact-link {
+            display: inline-block;
+            background: var(--jade);
+            color: #fff;
+            padding: 14px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: background .2s;
+        }
+        .contact-link:hover { background: #1b4332; }
+        footer { background: var(--ink); color: rgba(255,255,255,.6); padding: 48px 24px 32px; margin-top: 60px; }
+        .footer-inner { max-width: 800px; margin: 0 auto; text-align: center; }
+        .footer-bottom { padding-top: 20px; font-size: 12px; }
+        .footer-bottom a { color: rgba(255,255,255,.6); text-decoration: none; margin: 0 8px; }
+        .footer-bottom a:hover { color: var(--jade-light); }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="nav-logo">팔체질<span>연구소</span></a>
+        <div>
+            <a href="index.html#about">8체질이란?</a>
+            <a href="index.html#test">진단하기</a>
+            <a href="index.html#knowledge">건강정보</a>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 class="page-title">문의하기</h1>
+        <p class="page-subtitle">서비스 이용, 콘텐츠 제휴, 기타 문의사항이 있으시면 언제든지 아래 이메일로 연락주시기 바랍니다. 보내주신 내용은 꼼꼼히 검토 후 회신 드리겠습니다.</p>
+        <div class="content-box">
+            <h2>대표 이메일</h2>
+            <p>모든 문의는 아래 공식 이메일로 접수됩니다.</p>
+            <a href="mailto:das1909727@gmail.com" class="contact-link">das1909727@gmail.com</a>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-bottom">
+                <span>© 2024 팔체질연구소. All rights reserved.</span><br>
+                <a href="index.html">홈</a> | <a href="about.html">소개</a> | <a href="privacy.html">개인정보처리방침</a> | <a href="contact.html">문의하기</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
