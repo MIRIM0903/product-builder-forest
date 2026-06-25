@@ -515,6 +515,61 @@ nav a:hover { color: var(--jade); }
 }
 .btn-restart:hover { background: #1b4332; }
 
+.guidebook-cta-section { margin-top: 28px; }
+.guidebook-cta-card {
+  background: linear-gradient(135deg, #fdf8ef 0%, #f6efe6 100%);
+  border: 1px solid #e9d8bf;
+  border-radius: 24px;
+  padding: 32px 24px;
+  text-align: center;
+  box-shadow: 0 12px 28px rgba(105, 73, 31, 0.08);
+}
+.guidebook-eyebrow {
+  font-size: 13px;
+  font-weight: 700;
+  color: #9a5e15;
+  margin-bottom: 12px;
+  letter-spacing: 0.02em;
+}
+.guidebook-title {
+  font-size: clamp(22px, 3.2vw, 28px);
+  font-weight: 700;
+  color: #2d4330;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+.guidebook-copy {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #5f4b35;
+  margin: 0 auto 22px;
+  max-width: 760px;
+}
+.guidebook-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 700;
+  box-shadow: 0 10px 20px rgba(180, 83, 9, 0.18);
+  transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+}
+.guidebook-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 14px 24px rgba(180, 83, 9, 0.22);
+  background: linear-gradient(135deg, #ea8f1f 0%, #c76b0a 100%);
+}
+
+@media (max-width: 640px) {
+  .guidebook-cta-card { padding: 24px 16px; }
+  .guidebook-btn { width: 100%; }
+}
+
 /* ── ARTICLE SECTION ── */
 .article-section { padding: 64px 0; background: var(--paper); }
 .article-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; margin-top: 32px; }
@@ -1661,6 +1716,15 @@ function buildResultHTML(topKey, secKey, secScore, confidence) {
             <button class="btn-share" onclick="copyResult()">🔗 결과 공유하기</button>
             <button class="btn-restart" onclick="restartQuiz()">↺ 다시 진단하기</button>
         </div>
+
+        <section class="guidebook-cta-section" aria-label="가이드북 신청">
+            <div class="guidebook-cta-card">
+                <div class="guidebook-eyebrow">💡 내 체질을 아는 것보다 '관리'하는 것이 더 중요합니다.</div>
+                <h3 class="guidebook-title">내 체질 맞춤 7일 식단 &amp; 영양제 가이드북 받아보기</h3>
+                <p class="guidebook-copy">한의학 8체질 맞춤 가이드북은 더 나은 서비스 개발을 위해 커피 한 잔 값(4,900원)의 후원금을 받고 있으며, 본 서비스를 통한 수익금 전액은 유엔난민기구에 여러분의 이름으로 전액 기부됩니다. 내 몸에 꼭 맞는 건강 가이드도 챙기고, 따뜻한 마음도 함께 나누어보세요!</p>
+                <a class="guidebook-btn" href="https://forms.gle/3Y24eKoqaZJQqNzU8" target="_blank" rel="noopener noreferrer">🎁 가이드북 신청하고 기부 동참하기 (4,900원)</a>
+            </div>
+        </section>
     `;
 }
 
@@ -1792,11 +1856,13 @@ function showTab(idx) {
 function copyResult() {
     const topKey = Object.entries(scores).sort((a,b)=>b[1]-a[1])[0][0];
     const c = CONSTITUTIONS[topKey];
+    const siteUrl = 'https://product-builder-forest.pages.dev/';
     const text = `나의 한의학 8체질 진단 결과: ${c.name} (${c.nameEn})
 키워드: ${c.keyword}
 강한 장기: ${c.strong.join(', ')} | 약한 장기: ${c.weak.join(', ')}
 
-팔체질연구소에서 무료로 진단받으세요!`;
+팔체질연구소에서 무료로 진단받아보세요!
+${siteUrl}`;
     navigator.clipboard.writeText(text).then(() => showToast('클립보드에 복사되었습니다!')).catch(() => showToast('복사에 실패했습니다.'));
 }
 
